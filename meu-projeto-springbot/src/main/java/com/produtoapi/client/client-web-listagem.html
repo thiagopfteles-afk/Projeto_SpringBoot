@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h2>Lista de Produtos - HTML - JAVASCRIPT</h2>
+    
+    <!-- A mensagem de erro deve ficar fora da tabela -->
+    <div id="erroMensagem" style="color:red; display:none;">
+        Erro ao buscar produtos. Por favor, tente novamente mais tarde.
+    </div>
+
+    <table id="produtosTable" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>PRECO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As linhas da tabela serão inseridas aqui pelo JS -->
+        </tbody>
+    </table>
+
+    <!-- Elemento adicionado para mostrar o total de produtos -->
+    <p id="totalProdutos"></p>
+
+    <script>
+        function listarProdutos() {
+            // Correção: Fechar o parêntese do fetch
+            fetch('http://localhost:8000/produtos')
+                .then(response => { 
+                    // Correção: response.ok em vez de response,ok
+                    if (!response.ok) {
+                        throw new Error('Erro na rede: ' + response.status);
+                    }
+                    // Correção: remover os parênteses/chaves errados aqui
+                    return response.json();
+                })
+                .then(data => {
+                    const tableBody = document.getElementById('produtosTable').getElementsByTagName('tbody')[0];
+                    let totalProdutos = 0; // Correção: erro de digitação (estava totalPorudtos)
+                    
+                    // Correção: forEach em vez de fotEach
+                    data.forEach(produto => {
+                        // Correção: insertRow e insertCell escritos corretamente
+                        const row = tableBody.insertRow();
+                        const cellId = row.insertCell(0);
+                        const cellNome = row.insertCell(1); // Estava insertNome
+                        const cellPreco = row.insertCell(2);
+                        
+                        cellId.textContent = produto.id;
+                        cellNome.textContent = produto.nome;
+                        cellPreco.textContent = produto.preco;
+                        
+                        totalProdutos++;
+                    });
+                
+                    // O elemento totalProdutos não existia no HTML, adicionei acima.
+                    document.getElementById('totalProdutos').textContent = 'Total de produtos: ' + totalProdutos;
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar produtos:', error);
+                    document.getElementById('erroMensagem').style.display = 'block';
+                });
+        }
+
+        // Correção: Evento DOMContentLoaded escrito corretamente e fora da função
+        document.addEventListener('DOMContentLoaded', listarProdutos);
+    </script>
+</body>
+</html>
