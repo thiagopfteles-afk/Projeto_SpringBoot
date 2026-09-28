@@ -1,8 +1,3 @@
-Foi mal! Esqueci de colocar dentro do bloco de código para você conseguir copiar a formatação pura.
-
-Aqui está o código cru do Markdown para você só copiar e colar no seu `README.md`:
-
-```markdown
 <h1 align="center">
   📦 Produto API - Spring Boot & Front-end de Consumo
 </h1>
@@ -83,28 +78,3 @@ spring.datasource.driver-class-name=org.sqlite.JDBC
 # Configurações do Hibernate / JPA
 spring.jpa.database-platform=org.hibernate.community.dialect.SQLiteDialect
 spring.jpa.hibernate.ddl-auto=update
-
-```
-
-> **Aviso de CORS:** Como o frontend em HTML/JS fará requisições locais (ex: `http://localhost:8000`), certifique-se de que a sua classe Controller no Spring Boot possui a anotação `@CrossOrigin(origins = "*")` para permitir que o navegador acesse os dados sem bloqueios de segurança.
-
-Para iniciar o servidor, abra o terminal na raiz do projeto e execute:
-
-```bash
-mvn spring-boot:run
-
-```
-
-A API estará disponível, por padrão, na porta configurada (ex: `http://localhost:8000`).
-
-### 2. Rodando a Interface (Front-end)
-
-Como o front-end foi construído com tecnologias web padrão (HTML/CSS/JS), não é necessário compilar nada.
-
-1. Navegue até a pasta onde o arquivo `index.html` (ou a sua página principal) está salvo.
-2. Dê um duplo clique no arquivo para abri-lo no seu navegador.
-3. A página utilizará o JavaScript para buscar automaticamente a lista de produtos no seu servidor Spring Boot e renderizar a tabela na tela.
-
-```
-
-```
