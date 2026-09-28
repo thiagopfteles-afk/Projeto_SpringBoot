@@ -13,6 +13,7 @@ import java.util.Optional;
 @RequestMapping("/produtos")
 public class ProdutoController {
  @Autowired
+ 
  private ProdutoService produtoService;
  @GetMapping
  public List<Produto> listarTodos() {
